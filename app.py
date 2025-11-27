@@ -25,7 +25,7 @@ def webhook():
             {"name": "nalam ariya aaval", "value": data.get("res3", "N/A"), "inline": False},
             {"name": "send off message", "value": data.get("res4", "N/A"), "inline": False},
         ],
-        "footer": {"text": "Automated by KV Webhook System"}
+        "footer": {"text": "Odavum mudiyathu oliyavum mudiyathu webhook botuu watching"}
     }
 
     payload = {
@@ -37,5 +37,6 @@ def webhook():
     requests.post(DISCORD_WEBHOOK, json=payload)
 
     return {"status": "ok"}
+
 
 
