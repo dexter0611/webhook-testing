@@ -19,11 +19,11 @@ def webhook():
         "description": "A new response has been submitted.",
         "color": 0x5865F2,  # Discord blurple
         "fields": [
-            {"name": "📅 Date", "value": data.get("timestamp", "N/A"), "inline": False},
-            {"name": "Response 1", "value": data.get("res1", "N/A"), "inline": False},
-            {"name": "Response 2", "value": data.get("res2", "N/A"), "inline": False},
-            {"name": "Response 3", "value": data.get("res3", "N/A"), "inline": False},
-            {"name": "Response 4", "value": data.get("res4", "N/A"), "inline": False},
+            {"name": "Time submitted", "value": data.get("timestamp", "N/A"), "inline": False},
+            {"name": "nee fill panna date", "value": data.get("res1", "N/A"), "inline": False},
+            {"name": "Peru nee kuduthathu", "value": data.get("res2", "N/A"), "inline": False},
+            {"name": "nalam ariya aaval", "value": data.get("res3", "N/A"), "inline": False},
+            {"name": "send off message", "value": data.get("res4", "N/A"), "inline": False},
         ],
         "footer": {"text": "Automated by KV Webhook System"}
     }
@@ -37,4 +37,5 @@ def webhook():
     requests.post(DISCORD_WEBHOOK, json=payload)
 
     return {"status": "ok"}
+
 
