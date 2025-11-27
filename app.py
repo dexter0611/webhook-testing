@@ -3,7 +3,7 @@ import requests
 
 app = Flask(__name__)
 
-DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1443698733144608869/E636QSbLv8k_PuYOt8WW7YuvWMLhCjHfgeoNvOAYSoRwtOWVSZZyegmNqHpwJ67JhzJZ"
+DISCORD_WEBHOOK = "https://discord.com/api/webhooks/1443700815100510288/BdBBURGQyk4ugt0ZC5VOgG84h-rW2uFzVVoveJ6nGXUPmsAsxmrKsPMakp0OaYOedj8Y"
 
 @app.route("/")
 def home():
@@ -14,17 +14,27 @@ def webhook():
     data = request.json
     print("Received:", data)
 
-    # Create message for Discord
-    message = (
-        "**New Google Form Submission!**\n"
-        f"**Date:** {data.get('timestamp')}\n"
-        f"**Response 1:** {data.get('res1')}\n"
-        f"**Response 2:** {data.get('res2')}\n"
-        f"**Response 3:** {data.get('res3')}\n"
-        f"**Response 4:** {data.get('res4')}"
-    )
+    embed = {
+        "title": "📝 New Google Form Submission!",
+        "description": "A new response has been submitted.",
+        "color": 0x5865F2,  # Discord blurple
+        "fields": [
+            {"name": "📅 Date", "value": data.get("timestamp", "N/A"), "inline": False},
+            {"name": "Response 1", "value": data.get("res1", "N/A"), "inline": False},
+            {"name": "Response 2", "value": data.get("res2", "N/A"), "inline": False},
+            {"name": "Response 3", "value": data.get("res3", "N/A"), "inline": False},
+            {"name": "Response 4", "value": data.get("res4", "N/A"), "inline": False},
+        ],
+        "footer": {"text": "Automated by KV Webhook System"}
+    }
 
-    # Send message to Discord
-    requests.post(DISCORD_WEBHOOK, json={"content": message})
+    payload = {
+        "username": "webhook bot ahe",
+        "avatar_url": "https://cdn.discordapp.com/embed/avatars/4.png",
+        "embeds": [embed]
+    }
+
+    requests.post(DISCORD_WEBHOOK, json=payload)
 
     return {"status": "ok"}
+
